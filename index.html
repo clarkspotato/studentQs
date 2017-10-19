@@ -71,7 +71,7 @@
 
             <br />
 
-						<input id="submit" type="submit">
+            <button type="button" id="submit" class="btn btn-info">Submit</button>
 
 					</form>
 
@@ -122,6 +122,7 @@
       $("#submit").on("click", function(event){
       event.preventDefault();
 
+      if ($("#question").val().trim()) {
       value++;
       var question = $("#question").val().trim();
 
@@ -134,6 +135,7 @@
 
 
       $(".boxes").val("");
+      }
 
     });
 
