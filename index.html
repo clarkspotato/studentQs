@@ -73,6 +73,8 @@
 
             <button type="button" id="submit" class="btn btn-info">Submit</button>
 
+            <button type="button" class="btn btn-warning instructor">Instructor</button>
+
 					</form>
 
 
@@ -102,22 +104,21 @@
     firebase.initializeApp(config);
 
     var database = firebase.database();
+    var value = 0;
+    var bump = 0;
 
     database.ref().on("child_added", function(snapshot){
 
 
       var questionDisplay = snapshot.val().question;
       var valueDisplay = snapshot.val().value;
-
       var input = $("<tr>");
 
-      var temp = input.append("<td>" + questionDisplay + "<button type='button' class='btn btn-danger completed' value="+ valueDisplay +">Done</button></td>");
+      var temp = input.append("<td>" + questionDisplay + "<button type='button' class='btn btn-danger completed' value="+ valueDisplay +">Done</button>" + "<button type='button' class='btn btn-primary bump' value="+ valueDisplay +">&#128077; "+ bump +"</button></td>");
 
 
       $("#tableContent").append(temp);
       })
-
-      var value = 0;
 
       $("#submit").on("click", function(event){
       event.preventDefault();
@@ -129,7 +130,8 @@
       database.ref().push({
 
         question: question,
-        value: value
+        value: value,
+        bump: bump
 
       });
 
@@ -143,6 +145,10 @@
 
     $(this).attr({class:"btn btn-success success"});
     $(".success").html("&#x2713;");
+
+    })
+
+    $(document).on("click", ".bump", function(event){
 
     })
 

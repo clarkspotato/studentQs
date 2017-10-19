@@ -13,7 +13,9 @@
 }
 
 .completed,
-.success {
+.success,
+.bump,
+.instructor {
 
   float: right;
 }
